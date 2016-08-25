@@ -88,14 +88,6 @@ public class FlexiblePublisher extends Recorder implements DependecyDeclarer, Ma
     }
 
     public BuildStepMonitor getRequiredMonitorService() {
-        final Set<BuildStepMonitor> monitors = new HashSet<BuildStepMonitor>();
-        for (ConditionalPublisher cp : publishers) {
-            for (BuildStep publisher: cp.getPublisherList()) {
-                monitors.add(publisher.getRequiredMonitorService());
-            }
-        }
-        if (monitors.contains(BuildStepMonitor.BUILD)) return BuildStepMonitor.BUILD;
-        if (monitors.contains(BuildStepMonitor.STEP)) return BuildStepMonitor.STEP;
         return BuildStepMonitor.NONE;
     }
 
